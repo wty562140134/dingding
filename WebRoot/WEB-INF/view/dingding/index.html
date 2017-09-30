@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>认证入口</title>
+
+<meta charset="utf-8" />
+<!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="" name="认证" />
+<meta content="" name="认证" />
+<!-- end: META -->
+<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- end: HEAD -->
+<!-- start: BODY -->
+<body>
+
+	<script
+		src="${cxt!}/ui/rapido/assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript"
+		src="https://g.alicdn.com/ilw/ding/0.6.6/scripts/dingtalk.js"></script>
+	<script>
+			jQuery(document).ready(function() {			
+			
+			 var _config = {
+			    		agentId: '${agentId!}',
+			    		corpId: '${corpId!}',
+			    		timeStamp: '${timeStamp!}',
+			    		nonceStr: '${nonceStr!}',
+			    		signature: '${signature!}'
+			        };
+			
+			        //jsapi的配置。我注销之后代码仍然可正确执行。这里我没有了解到具体的函义与用法
+			        dd.config({
+			        	agentId: _config.agentId,
+			        	corpId: _config.corpId,
+			        	timeStamp: _config.timeStamp,
+			        	nonceStr: _config.nonceStr,
+			        	signature: _config.signature,
+			            jsApiList: ['runtime.info',
+			                'biz.contact.choose',
+			                'device.notification.confirm',
+			                'device.notification.alert',
+			                'device.notification.prompt',
+			                'biz.ding.post',
+			            'runtime.permission.requestAuthCode',
+			            'biz.contact.complexChoose',
+			            'biz.navigation.setTitle',
+			            'biz.navigation.setLeft',
+			            'biz.navigation.setRight',
+			            'biz.util.uploadImageFromCamera',
+			            'biz.util.previewImage',
+			            'biz.util.uploadImage',
+			            'biz.util.datepicker',
+			            'biz.util.scan',
+			            'device.geolocation.get']
+			        });
+
+			        dd.ready(function () {
+			        	dd.runtime.info({
+			                onSuccess: function(info) {
+			                },
+			                onFail: function(err) {
+			                	dd.device.notification.alert({
+			                	    message: "版本不支持",
+			                	    title: "提示",//可传空
+			                	    buttonName: "确认",
+			                	    onSuccess : function() {
+			                	    },
+			                	    onFail : function(err) {}
+			                	});
+			                }
+			            }); 
+			            //获取免登授权码 ,查询用户信息返回用户信息如果获取到code就不验证了
+			           
+			            dd.runtime.permission.requestAuthCode({
+			                corpId: _config.corpId,
+			                onSuccess: function (info) {
+			                	document.location.href="${cxt!}/dingding?dd_nav_bgcolor=FF5E97F6&code="+ info.code; 
+			                },
+			                onFail: function (err) { 
+			                }
+			            });
+			            
+			            dd.biz.navigation.setTitle({
+			                title : '钉钉',//控制标题文本，空字符串表示显示默认文本
+			            });
+			            
+			            dd.biz.navigation.setLeft({
+			            	show: true,//控制按钮显示， true 显示， false 隐藏， 默认true
+			                control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+			                showIcon: true,//是否显示icon，true 显示， false 不显示，默认true； 注：具体UI以客户端为准
+			                text: '',//控制显示文本，空字符串表示显示默认文本
+			                onSuccess : function(result) {
+			                
+			                },
+			                onFail : function(err) {}
+			            });
+			            dd.biz.navigation.setRight({
+			            	show: false,//控制按钮显示， true 显示， false 隐藏， 默认true
+			                control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+			                showIcon: true,//是否显示icon，true 显示， false 不显示，默认true； 注：具体UI以客户端为准
+			                text: '',//控制显示文本，空字符串表示显示默认文本          
+			                onSuccess : function(result) {
+			                },
+			                onFail : function(err) {}
+			            });
+			           
+			});
+			 }); 
+			
+		</script>
+</body>
+</html>

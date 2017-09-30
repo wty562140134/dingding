@@ -1,0 +1,17 @@
+#配置获取code的请求参数
+getCodeList:
+    - paramMap1:
+        gettoken:
+            - GET
+            - access_token
+    - paramMap2:
+        get_jsapi_ticket:
+            - GET
+            - ticket
+            
+#获取用户信息请求参数
+getUserInfo:
+    - paramMap1:
+        user/getuserinfo:
+            - GET
+            - userid

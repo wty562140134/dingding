@@ -1,0 +1,90 @@
+2017-09-07 16:59:28,919 WARN  org.eclipse.jetty.util.component.AbstractLifeCycle:204 - FAILED jfinal: java.lang.Error: Unresolved compilation problems: 
+	The import com.dingding.controller.IsvReceive.IsvReceiveController cannot be resolved
+	The method add(String, Class<? extends Controller>) in the type Routes is not applicable for the arguments (String, Class<IsvReceiveController>)
+	IsvReceiveController cannot be resolved to a type
+
+java.lang.Error: Unresolved compilation problems: 
+	The import com.dingding.controller.IsvReceive.IsvReceiveController cannot be resolved
+	The method add(String, Class<? extends Controller>) in the type Routes is not applicable for the arguments (String, Class<IsvReceiveController>)
+	IsvReceiveController cannot be resolved to a type
+
+	at com.dingding.controller.dingdingRouting.<init>(dingdingRouting.java:3)
+	at com.dingding.Config.dingdingConfig.configRoute(dingdingConfig.java:22)
+	at com.jfinal.core.Config.configJFinal(Config.java:51)
+	at com.jfinal.core.JFinal.init(JFinal.java:63)
+	at com.jfinal.core.JFinalFilter.init(JFinalFilter.java:49)
+	at org.eclipse.jetty.servlet.FilterHolder.doStart(FilterHolder.java:119)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:724)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:706)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:277)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at com.jfinal.server.JettyServerForIDEA.doStart(JettyServerForIDEA.java:133)
+	at com.jfinal.server.JettyServerForIDEA.start(JettyServerForIDEA.java:72)
+	at com.jfinal.core.JFinal.start(JFinal.java:169)
+	at com.dingding.RunApp.main(RunApp.java:8)
+2017-09-07 16:59:28,924 WARN  org.eclipse.jetty.util.component.AbstractLifeCycle:204 - FAILED o.e.j.w.WebAppContext{/,file:/D:/workspaces/dingding/WebRoot/}: java.lang.Error: Unresolved compilation problems: 
+	The import com.dingding.controller.IsvReceive.IsvReceiveController cannot be resolved
+	The method add(String, Class<? extends Controller>) in the type Routes is not applicable for the arguments (String, Class<IsvReceiveController>)
+	IsvReceiveController cannot be resolved to a type
+
+java.lang.Error: Unresolved compilation problems: 
+	The import com.dingding.controller.IsvReceive.IsvReceiveController cannot be resolved
+	The method add(String, Class<? extends Controller>) in the type Routes is not applicable for the arguments (String, Class<IsvReceiveController>)
+	IsvReceiveController cannot be resolved to a type
+
+	at com.dingding.controller.dingdingRouting.<init>(dingdingRouting.java:3)
+	at com.dingding.Config.dingdingConfig.configRoute(dingdingConfig.java:22)
+	at com.jfinal.core.Config.configJFinal(Config.java:51)
+	at com.jfinal.core.JFinal.init(JFinal.java:63)
+	at com.jfinal.core.JFinalFilter.init(JFinalFilter.java:49)
+	at org.eclipse.jetty.servlet.FilterHolder.doStart(FilterHolder.java:119)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:724)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:706)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:277)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at com.jfinal.server.JettyServerForIDEA.doStart(JettyServerForIDEA.java:133)
+	at com.jfinal.server.JettyServerForIDEA.start(JettyServerForIDEA.java:72)
+	at com.jfinal.core.JFinal.start(JFinal.java:169)
+	at com.dingding.RunApp.main(RunApp.java:8)
+2017-09-07 16:59:28,925 WARN  org.eclipse.jetty.util.component.AbstractLifeCycle:204 - FAILED org.eclipse.jetty.server.Server@48a5d3d5: java.lang.Error: Unresolved compilation problems: 
+	The import com.dingding.controller.IsvReceive.IsvReceiveController cannot be resolved
+	The method add(String, Class<? extends Controller>) in the type Routes is not applicable for the arguments (String, Class<IsvReceiveController>)
+	IsvReceiveController cannot be resolved to a type
+
+java.lang.Error: Unresolved compilation problems: 
+	The import com.dingding.controller.IsvReceive.IsvReceiveController cannot be resolved
+	The method add(String, Class<? extends Controller>) in the type Routes is not applicable for the arguments (String, Class<IsvReceiveController>)
+	IsvReceiveController cannot be resolved to a type
+
+	at com.dingding.controller.dingdingRouting.<init>(dingdingRouting.java:3)
+	at com.dingding.Config.dingdingConfig.configRoute(dingdingConfig.java:22)
+	at com.jfinal.core.Config.configJFinal(Config.java:51)
+	at com.jfinal.core.JFinal.init(JFinal.java:63)
+	at com.jfinal.core.JFinalFilter.init(JFinalFilter.java:49)
+	at org.eclipse.jetty.servlet.FilterHolder.doStart(FilterHolder.java:119)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:724)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:265)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1250)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:706)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:492)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.doStart(HandlerWrapper.java:95)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:277)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:64)
+	at com.jfinal.server.JettyServerForIDEA.doStart(JettyServerForIDEA.java:133)
+	at com.jfinal.server.JettyServerForIDEA.start(JettyServerForIDEA.java:72)
+	at com.jfinal.core.JFinal.start(JFinal.java:169)
+	at com.dingding.RunApp.main(RunApp.java:8)
