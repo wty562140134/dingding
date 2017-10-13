@@ -16,6 +16,7 @@ import org.yaml.snakeyaml.Yaml;
 public class loadYaml {
 
 	private String fileName = null;
+	private Yaml yaml = new Yaml();
 
 	public loadYaml(String fileName) {
 		this.fileName = fileName;
@@ -40,7 +41,6 @@ public class loadYaml {
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> getYamlData() {
-		Yaml yaml = new Yaml();
 		return (Map<String, Object>) yaml.load(getConfigFile());
 	}
 

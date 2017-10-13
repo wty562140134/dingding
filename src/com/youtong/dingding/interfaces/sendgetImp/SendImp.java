@@ -1,5 +1,6 @@
 package com.youtong.dingding.interfaces.sendgetImp;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -41,6 +42,7 @@ public class SendImp implements Send {
 	 *            发送请求url 如:http://www.baidu.com/getUser
 	 * @param corps
 	 *            发送请求的参数MAP<String,String>
+	 * @return
 	 */
 	public SendImp(String url, Map<String, String> corps) {
 		this.url = url;
@@ -65,6 +67,10 @@ public class SendImp implements Send {
 		this.url = String.format(sendUrl, sendName, sendValue);
 	}
 
+	public SendImp(String url) {
+		this.url = url;
+	}
+
 	/**
 	 * 此方法需配合发送GET请求完整的URL的构造器使用
 	 * 
@@ -85,6 +91,16 @@ public class SendImp implements Send {
 	public SendImp resetAll(String sendUrl, Map<String, String> params) {
 		this.corps = params;
 		this.url = sendUrl;
+		return this;
+	}
+
+	public SendImp setSendInterface(String sendInterface) {
+		this.url += "/" + sendInterface;
+		return this;
+	}
+
+	public SendImp setParam(Map<String, String> param) {
+		this.corps = param;
 		return this;
 	}
 
@@ -112,5 +128,12 @@ public class SendImp implements Send {
 			}
 		}
 		return this.resObj;
+	}
+
+	public static void main(String[] args) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("a", "asdfkjlkjiej");
+		SendImp send = new SendImp("www.baidu.com", param);
+		send.setSendInterface("getUser");
 	}
 }

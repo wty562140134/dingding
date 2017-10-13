@@ -1,10 +1,10 @@
 #配置获取code的请求参数
 getCodeList:
-    - paramMap1:
+    paramMap1:
         gettoken:
             - GET
             - access_token
-    - paramMap2:
+    paramMap2:
         get_jsapi_ticket:
             - GET
             - ticket
