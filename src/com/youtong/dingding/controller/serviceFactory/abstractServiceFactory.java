@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.youtong.dingding.Tools.loadConfig.loadConfigFile;
-import com.youtong.dingding.controller.service.services.service;
 
 /**
  * 创建service的抽象类
@@ -25,7 +24,7 @@ public abstract class abstractServiceFactory {
 	 *            需要service发送的请求参数
 	 * @return
 	 */
-	public abstract <T extends service> T createService(Class<T> clazz,
+	public abstract <T> T productionService(Class<T> clazz,
 			loadConfigFile load, Map<String, Map<String, List<String>>> param);
 
 }

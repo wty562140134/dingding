@@ -1,6 +1,5 @@
 package com.youtong.dingding.controller.service.services;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +12,8 @@ import com.youtong.dingding.controller.service.baseService;
 public class service extends baseService {
 
 	public service(loadConfigFile load,
-			Map<String, Map<String, List<String>>> paramMap) {
-		super(load, paramMap);
+			Map<String, Map<String, List<String>>> paramMaps) {
+		super(load, paramMaps);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -8,7 +8,6 @@ import com.youtong.dingding.Tools.loadConfig.loadConfigFile;
 import com.youtong.dingding.Tools.yamlLoad.loadYaml;
 import com.youtong.dingding.controller.factoryUtile.factoryUtile;
 import com.youtong.dingding.controller.service.services.service;
-import com.youtong.dingding.controller.service.services.talkUser.talkUserService;
 import com.youtong.dingding.controller.serviceFactory.abstractServiceFactory;
 
 public class baseController extends Controller {
@@ -22,21 +21,22 @@ public class baseController extends Controller {
 		this.yaml = new loadYaml("paramConfig.yaml");
 	}
 
-	public void index() {
-		String code = getPara();
-		if (code == null) {
-			Map<String, Map<String, List<String>>> paramMap = factoryUtile
-					.getParamMap(this.yaml, "getCodeList");
-			service talkUser = service.createService(talkUserService.class,
-					this.load, paramMap);
-			talkUser.requestSend();
-		} else {
-
-		}
+	/**
+	 * 创建service的封装方法
+	 * 
+	 * @param yamlParam
+	 *            yaml配置文件中需要的参数名
+	 * @param clazz
+	 *            需要创建的service类
+	 * @return 返回创建好的service
+	 */
+	@SuppressWarnings("unchecked")
+	protected <T> T initService(String yamlParam, Class<T> clazz) {
+		Map<String, Map<String, List<String>>> paramMap = factoryUtile
+				.getParamMap(this.yaml, yamlParam);
+		service creationService = (service) service.productionService(clazz,
+				this.load, paramMap);
+		return (T) creationService;
 	}
 
-	public static void main(String[] args) {
-		baseController con = new baseController();
-		con.index();
-	}
 }

@@ -10,7 +10,7 @@ import com.youtong.dingding.controller.serviceFactory.factory.serviceFactory;
 public class factoryUtile {
 
 	/**
-	 * 获取service工厂
+	 * 获取工厂
 	 * 
 	 * @return
 	 */
@@ -34,23 +34,6 @@ public class factoryUtile {
 		@SuppressWarnings("unchecked")
 		Map<String, Map<String, List<String>>> paramMap = (Map<String, Map<String, List<String>>>) yamlObj
 				.get(yamlParam);
-		// Map<String, List<String>> sendInterface = null;
-		// Map<String, Object> paramMap = yaml.getYamlData();
-		// @SuppressWarnings("unchecked")
-		// List<Object> paramList = (List<Object>) paramMap.get(yamlParam);
-		// for (int i = 0; i < paramList.size(); i++) {
-		// String para = "paramMap%s";
-		// @SuppressWarnings("unchecked")
-		// Map<String, List<String>> param = (Map<String, List<String>>)
-		// paramList
-		// .get(i);
-		// para = String.format(para, i + 1);
-		// @SuppressWarnings("unchecked")
-		// Map<String, List<String>> interfaces = (Map<String, List<String>>)
-		// param
-		// .get(para);
-		// // sendInterface = interfaces;
-		// }
 		return paramMap;
 	}
 }

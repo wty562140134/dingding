@@ -18,8 +18,8 @@ public class serviceFactory extends abstractServiceFactory {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public <T extends service> T createService(Class<T> clazz,
-			loadConfigFile load, Map<String, Map<String, List<String>>> param) {
+	public <T> T productionService(Class<T> clazz, loadConfigFile load,
+			Map<String, Map<String, List<String>>> param) {
 		service service = null;
 		try {
 			// 传入需要创建的类

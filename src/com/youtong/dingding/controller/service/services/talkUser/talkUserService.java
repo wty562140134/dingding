@@ -13,8 +13,8 @@ import com.youtong.dingding.controller.service.services.service;
 public class talkUserService extends service {
 
 	public talkUserService(loadConfigFile load,
-			Map<String, Map<String, List<String>>> paramMap) {
-		super(load, paramMap);
+			Map<String, Map<String, List<String>>> paramMaps) {
+		super(load, paramMaps);
 	}
 
 	@SuppressWarnings("unchecked")
