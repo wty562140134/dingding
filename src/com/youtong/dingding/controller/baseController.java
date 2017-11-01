@@ -10,12 +10,22 @@ import com.youtong.dingding.controller.factoryUtile.factoryUtile;
 import com.youtong.dingding.controller.service.services.service;
 import com.youtong.dingding.controller.serviceFactory.abstractServiceFactory;
 
+/**
+ * 所有controller的父类.封装类创建service的方法
+ * 
+ * @author 123
+ * 
+ */
 public class baseController extends Controller {
 
-	private loadConfigFile load = null;
-	private loadYaml yaml = null;
+	protected loadConfigFile load = null;
+	protected loadYaml yaml = null;
 	protected abstractServiceFactory service = factoryUtile.getFactory();
+	protected Map<String, Object> attrs;
 
+	/**
+	 * 构造函数,加载cfg和yaml配置文件
+	 */
 	public baseController() {
 		this.load = new loadConfigFile("accessToken.cfg");
 		this.yaml = new loadYaml("paramConfig.yaml");
@@ -31,12 +41,15 @@ public class baseController extends Controller {
 	 * @return 返回创建好的service
 	 */
 	@SuppressWarnings("unchecked")
-	protected <T> T initService(String yamlParam, Class<T> clazz) {
-		Map<String, Map<String, List<String>>> paramMap = factoryUtile
-				.getParamMap(this.yaml, yamlParam);
+	protected <T> T initService(String yamlParamMapsName, Class<?> clazz) {
+		Map<String, Map<String, List<String>>> paramMaps = factoryUtile
+				.getParamMap(this.yaml, yamlParamMapsName);
 		service creationService = (service) service.productionService(clazz,
-				this.load, paramMap);
+				this.load, paramMaps);
 		return (T) creationService;
 	}
 
+	protected void setAttribute(Map<String, Object> attrs) {
+		this.attrs = attrs;
+	}
 }

@@ -136,4 +136,5 @@ public class SendImp implements Send {
 		SendImp send = new SendImp("www.baidu.com", param);
 		send.setSendInterface("getUser");
 	}
+
 }

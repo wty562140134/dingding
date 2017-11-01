@@ -67,4 +67,5 @@ public class talkUserService extends service {
 		}
 		return cacheMap.get(sendTypeAndResDataName.get(1));
 	}
+
 }

@@ -3,7 +3,6 @@ package com.youtong.dingding.Tools.loadConfig;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.youtong.dingding.Tools.baseLoadConfigFile;
 
 /**
  * 配置文件读取类
@@ -76,4 +75,5 @@ public class loadConfigFile extends baseLoadConfigFile {
 	private void setAgentID() {
 		this.AgentID = this.prop.get("AgentID");
 	}
+
 }

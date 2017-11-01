@@ -24,7 +24,8 @@ public abstract class abstractServiceFactory {
 	 *            需要service发送的请求参数
 	 * @return
 	 */
-	public abstract <T> T productionService(Class<T> clazz,
-			loadConfigFile load, Map<String, Map<String, List<String>>> param);
+	public abstract <T> T productionService(Class<?> clazz,
+			loadConfigFile load,
+			Map<String, Map<String, List<String>>> paramMaps);
 
 }

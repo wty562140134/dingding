@@ -10,4 +10,5 @@ public class dingdingRoutes extends Routes {
 		// add("/IsvReceiv",IsvReceivController.class)
 		add("/dingding", dingTalkUserController.class);
 	}
+
 }

@@ -12,6 +12,7 @@ import com.youtong.dingding.controller.service.services.talkUser.talkUserService
 import com.youtong.dingding.controller.serviceFactory.abstractServiceFactory;
 
 public class serviceFactoryTest {
+
 	private loadConfigFile load = null;
 	private loadYaml yaml = null;
 

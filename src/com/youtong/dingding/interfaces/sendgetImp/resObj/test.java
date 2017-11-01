@@ -1,6 +1,7 @@
 package com.youtong.dingding.interfaces.sendgetImp.resObj;
 
 public class test {
+
 	public static void main(String[] args) {
 		String jsonStr = "{'a':'apple','b':2}";
 		resObj resObj = new resObj();
@@ -17,4 +18,5 @@ public class test {
 		}
 		System.out.println(resObj.getJsonData("a"));
 	}
+
 }

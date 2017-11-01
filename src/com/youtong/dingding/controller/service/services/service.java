@@ -9,6 +9,12 @@ import com.jfinal.plugin.ehcache.CacheKit;
 import com.youtong.dingding.Tools.loadConfig.loadConfigFile;
 import com.youtong.dingding.controller.service.baseService;
 
+/**
+ * baseService类的实现类
+ * 
+ * @author 123
+ * 
+ */
 public class service extends baseService {
 
 	public service(loadConfigFile load,
@@ -65,4 +71,5 @@ public class service extends baseService {
 		}
 		return reqMap;
 	}
+
 }

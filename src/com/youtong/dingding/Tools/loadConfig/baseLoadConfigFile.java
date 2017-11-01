@@ -1,4 +1,4 @@
-package com.youtong.dingding.Tools;
+package com.youtong.dingding.Tools.loadConfig;
 
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;

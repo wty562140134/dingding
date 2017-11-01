@@ -55,4 +55,5 @@ public class loadYaml {
 		Map<String, Object> map = ya.getYamlData();
 		System.out.println(map);
 	}
+
 }

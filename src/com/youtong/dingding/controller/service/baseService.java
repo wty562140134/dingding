@@ -7,6 +7,12 @@ import java.util.Map;
 import com.youtong.dingding.Tools.loadConfig.loadConfigFile;
 import com.youtong.dingding.interfaces.sendgetImp.SendImp;
 
+/**
+ * service类的父类,是个抽象类
+ * 
+ * @author 123
+ * 
+ */
 public abstract class baseService {
 
 	protected loadConfigFile load;
@@ -19,13 +25,8 @@ public abstract class baseService {
 	 * 
 	 * @param load
 	 *            配置文件读取的对象
-	 * @param interfaces
-	 *            需要发送请求的MAP<String,List<String>>
-	 *            key为发送请求接口,value.get(0)为发送请求类型GET or
-	 *            POST,value.get(1)为获取响应json需要的值key例如: List<String> mapList =
-	 *            new ArrayList<String>(); mapList.add("GET");
-	 *            mapList.add("access_token");
-	 *            interfaces.put("gettoken",mapList);
+	 * @param paramMaps
+	 *            需要发送请求的Map<String, Map<String, List<String>>>
 	 */
 	public baseService(loadConfigFile load,
 			Map<String, Map<String, List<String>>> paramMaps) {
@@ -57,8 +58,8 @@ public abstract class baseService {
 	/**
 	 * 对发送请的参数进行处理,处理为Map
 	 * 
-	 * @param resData
-	 *            成功后需要的数据的key
+	 * @param resDataName
+	 *            建议使用请求成功后返回对象的需要自动名,如果需要的是整个对象用all代替
 	 * 
 	 * @return Map<String,String>
 	 */
