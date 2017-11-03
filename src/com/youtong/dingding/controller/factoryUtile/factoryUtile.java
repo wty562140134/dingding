@@ -15,8 +15,8 @@ public class factoryUtile {
 	 * @return
 	 */
 	public static abstractServiceFactory getFactory() {
-		abstractServiceFactory service = new serviceFactory();// 实例化工厂
-		return service;
+		abstractServiceFactory factory = new serviceFactory();// 实例化工厂
+		return factory;
 	}
 
 	/**

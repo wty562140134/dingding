@@ -12,6 +12,7 @@ public class dingTalkUserController extends baseController {
 
 	public dingTalkUserController() {
 		this.talkUser = initService("getCodeList", talkUserService.class);
+
 	}
 
 	public void index() {

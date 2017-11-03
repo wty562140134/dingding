@@ -4,7 +4,7 @@ import java.text.MessageFormat;
 import java.util.List;
 
 /**
- * 通过集成这个抽象类,重写getSQL函数即可用代理类sqlStringUtil的getSQL()获取处理并返回的SQL
+ * 通过继承这个抽象类,重写getSQL函数即可用代理类sqlStringUtil的getSQL()获取处理并返回的SQL
  * 
  * @author 123
  * 

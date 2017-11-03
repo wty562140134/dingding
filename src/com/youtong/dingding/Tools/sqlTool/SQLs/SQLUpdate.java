@@ -21,6 +21,11 @@ public class SQLUpdate extends abstractSQL {
 		return this.TABLENAME + " " + this.SETNAME + " " + this.WHERE;
 	}
 
+	/**
+	 * 设置表名
+	 * 
+	 * @param tableName
+	 */
 	private void setTableName(String tableName) {
 		if (tableName == null || tableName.trim().length() == 0) {
 			throw new RuntimeException(
@@ -29,6 +34,12 @@ public class SQLUpdate extends abstractSQL {
 		this.TABLENAME = "update " + tableName;
 	}
 
+	/**
+	 * 设置字段名
+	 * 
+	 * @param placeholder
+	 * @param filesName
+	 */
 	private void setFilesName(String placeholder, List<String> filesName) {
 		String sqlType = "set";
 		this.SETNAME = verdict(placeholder, sqlType, filesName);

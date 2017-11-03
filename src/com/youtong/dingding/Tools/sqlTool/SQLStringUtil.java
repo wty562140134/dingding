@@ -10,7 +10,7 @@ import com.youtong.dingding.Tools.sqlTool.SQLs.SQLUpdate;
 import com.youtong.dingding.Tools.sqlTool.abstractSQL.abstractSQL;
 
 /**
- * 封装sql的类
+ * 封装sql的代理类
  * 
  * @author 123
  * 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.youtong.dingding.Tools.loadConfig.loadConfigFile;
+import com.youtong.dingding.controller.service.abstractReflectService;
+import com.youtong.dingding.controller.service.services.service;
 
 /**
  * 创建service的抽象类
@@ -24,8 +26,18 @@ public abstract class abstractServiceFactory {
 	 *            需要service发送的请求参数
 	 * @return
 	 */
-	public abstract <T> T productionService(Class<?> clazz,
+	public abstract <T extends service> T productionService(Class<?> clazz,
 			loadConfigFile load,
 			Map<String, Map<String, List<String>>> paramMaps);
+
+	/**
+	 * 创建反射类的抽象方法
+	 * 
+	 * @param clazz
+	 *            需要创建反射类的class
+	 * @return
+	 */
+	public abstract <T extends abstractReflectService> T productionReflect(
+			Class<?> clazz);
 
 }

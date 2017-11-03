@@ -16,6 +16,11 @@ public class SQLDelete extends abstractSQL {
 		return this.TABLENAME + " " + this.WHERE;
 	}
 
+	/**
+	 * 设置表名
+	 * 
+	 * @param tableName
+	 */
 	private void setTableName(String tableName) {
 		if (tableName == null || tableName.trim().length() == 0) {
 			throw new RuntimeException(

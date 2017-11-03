@@ -7,6 +7,8 @@ import com.jfinal.core.Controller;
 import com.youtong.dingding.Tools.loadConfig.loadConfigFile;
 import com.youtong.dingding.Tools.yamlLoad.loadYaml;
 import com.youtong.dingding.controller.factoryUtile.factoryUtile;
+import com.youtong.dingding.controller.service.abstractReflectService;
+import com.youtong.dingding.controller.service.reflectService.reflectService;
 import com.youtong.dingding.controller.service.services.service;
 import com.youtong.dingding.controller.serviceFactory.abstractServiceFactory;
 
@@ -20,7 +22,7 @@ public class baseController extends Controller {
 
 	protected loadConfigFile load = null;
 	protected loadYaml yaml = null;
-	protected abstractServiceFactory service = factoryUtile.getFactory();
+	protected abstractServiceFactory createService = factoryUtile.getFactory();
 	protected Map<String, Object> attrs;
 
 	/**
@@ -32,7 +34,7 @@ public class baseController extends Controller {
 	}
 
 	/**
-	 * 创建service的封装方法
+	 * 创建继承service的封装方法
 	 * 
 	 * @param yamlParam
 	 *            yaml配置文件中需要的参数名
@@ -41,12 +43,29 @@ public class baseController extends Controller {
 	 * @return 返回创建好的service
 	 */
 	@SuppressWarnings("unchecked")
-	protected <T> T initService(String yamlParamMapsName, Class<?> clazz) {
+	protected <T extends service> T initService(String yamlParamMapsName,
+			Class<?> clazz) {
 		Map<String, Map<String, List<String>>> paramMaps = factoryUtile
 				.getParamMap(this.yaml, yamlParamMapsName);
-		service creationService = (service) service.productionService(clazz,
-				this.load, paramMaps);
+		service creationService = (service) createService.productionService(
+				clazz, this.load, paramMaps);
 		return (T) creationService;
+	}
+
+	/**
+	 * 创建反射类的封装函数
+	 * 
+	 * @param clazz
+	 *            继承reflectService的反射类
+	 * @return
+	 */
+	protected <T extends abstractReflectService> T initReflectService(
+			Class<?> clazz) {
+		return createService.productionReflect(clazz);
+	}
+
+	protected <T extends abstractReflectService> T initReflectService() {
+		return createService.productionReflect(reflectService.class);
 	}
 
 	protected void setAttribute(Map<String, Object> attrs) {

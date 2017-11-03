@@ -1,13 +1,12 @@
 package com.youtong.dingding.controller.serviceFactory.factory;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
 import com.youtong.dingding.Tools.loadConfig.loadConfigFile;
 import com.youtong.dingding.controller.serviceFactory.abstractServiceFactory;
+import com.youtong.dingding.controller.service.abstractReflectService;
 import com.youtong.dingding.controller.service.services.service;
 
 /**
@@ -20,7 +19,8 @@ public class serviceFactory extends abstractServiceFactory {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public <T> T productionService(Class<?> clazz, loadConfigFile load,
+	public <T extends service> T productionService(Class<?> clazz,
+			loadConfigFile load,
 			Map<String, Map<String, List<String>>> paramMaps) {
 		service service = null;
 		try {
@@ -35,4 +35,17 @@ public class serviceFactory extends abstractServiceFactory {
 		return (T) service;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends abstractReflectService> T productionReflect(Class<?> clazz) {
+		T ref = null;
+		try {
+			ref = (T) clazz.newInstance();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return (T) ref;
+	}
 }

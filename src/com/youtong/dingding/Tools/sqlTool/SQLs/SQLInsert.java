@@ -23,6 +23,11 @@ public class SQLInsert extends abstractSQL {
 		return this.TABLENAME + " " + this.FILENAME + " " + this.VALUES;
 	}
 
+	/**
+	 * 设置表名
+	 * 
+	 * @param tableName
+	 */
 	private void setTableName(String tableName) {
 		if (tableName == null || tableName.trim().length() == 0) {
 			throw new RuntimeException(
@@ -31,6 +36,12 @@ public class SQLInsert extends abstractSQL {
 		this.TABLENAME = "insert into" + " " + tableName;
 	}
 
+	/**
+	 * 设置字段名
+	 * 
+	 * @param placeholder
+	 * @param filesName
+	 */
 	private void setFilesName(String placeholder, List<String> filesName) {
 		String sqlType = "insert";
 		this.FILENAME = verdict(placeholder, sqlType, filesName);
