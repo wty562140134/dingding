@@ -5,6 +5,8 @@ import com.youtong.dingding.controller.service.abstractReflectService;
 
 public class reflectService extends abstractReflectService {
 
+	private static final String moduleService = "com.youtong.dingding.controller.service.services.moduleServices.";
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T invokenFunction(Class<?> clazz, String callFunName,
@@ -31,14 +33,14 @@ public class reflectService extends abstractReflectService {
 		return obj;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "static-access" })
 	@Override
 	public <T> T invokenFunction(String clazzName, String callFunName,
 			Object... params) {
 		T obj = null;
 		Class<?> clazz = null;
 		try {
-			clazz = Class.forName(clazzName);
+			clazz = Class.forName(this.moduleService + clazzName);
 			this.method = clazz.getDeclaredMethod(callFunName,
 					getParamsClass(params));
 			obj = (T) this.method.invoke(clazz.newInstance(), params);

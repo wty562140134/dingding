@@ -20,6 +20,17 @@ public abstract class abstractReflectService {
 	public abstract <T> T invokenFunction(Class<?> clazz, String callFunName,
 			Object... params);
 
+	/**
+	 * 反射调用函数的函数重载函数
+	 * 
+	 * @param clazzName
+	 *            调用类全名，路径名+类名
+	 * @param callFunName
+	 *            调用函数名
+	 * @param params
+	 *            调用函数传入参数
+	 * @return
+	 */
 	public abstract <T> T invokenFunction(String clazzName, String callFunName,
 			Object... params);
 
