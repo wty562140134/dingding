@@ -164,7 +164,7 @@ public abstract class abstractSQL {
 	private String addPlaceholder(String placeholder, String sqlType,
 			List<String> verdictList) {
 		String para = null;
-		if (verdictList == null) {
+		if (verdictList == null || verdictList.size() == 0) {
 			para = "";
 			return para;
 		}
