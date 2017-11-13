@@ -3,10 +3,6 @@ package com.youtong.dingding.Tools.sqlTool;
 import java.util.Arrays;
 import java.util.List;
 
-import com.youtong.dingding.Tools.sqlTool.SQLs.SQLDelete;
-import com.youtong.dingding.Tools.sqlTool.SQLs.SQLInsert;
-import com.youtong.dingding.Tools.sqlTool.SQLs.SQLSelect;
-import com.youtong.dingding.Tools.sqlTool.SQLs.SQLUpdate;
 import com.youtong.dingding.Tools.sqlTool.abstractSQL.abstractSQL;
 
 /**
@@ -18,38 +14,56 @@ import com.youtong.dingding.Tools.sqlTool.abstractSQL.abstractSQL;
 public class SQLStringUtil {
 
 	private String placeholder;
-	private List<String> tableName;
-	private List<String> filesName;
-	private List<String> values;
-	private List<String> where;
+	private List<String> tableName = null;
+	private List<String> filesName = null;
+	private List<String> values = null;
+	private List<String> where = null;
+	private List<String> whereValues = null;
+	private List<String> setValues = null;
 
 	public SQLStringUtil() {
-		setPlaceholder("?");
+		setPlaceholder("%s");
 	}
 
 	/**
 	 * 获取SQLstr的代理函数,传入相应的sql对象后调用对象的重写的getSQL函数
 	 * 
 	 * @param obj
-	 *            sql对象
-	 * @return
+	 *            相应增删查改sql对象
+	 * @param getFullSQL
+	 *            是否获取完整sql(不带占位符)
+	 * 
+	 * @return 当前对象
 	 */
-	public String getSQL(abstractSQL obj) {
-		String sql = null;
+	public String getSQL(abstractSQL obj, Boolean getFullSQL) {
+		String SQLStr = null;
 		if (this.values != null) {
-			sql = obj.getSQL(this.placeholder, this.tableName, this.filesName,
-					this.values);
-			this.placeholder = "?";
-			return sql;
+			SQLStr = obj.getSQL(this.placeholder, this.tableName,
+					this.filesName, this.values, this.whereValues,
+					this.setValues, getFullSQL);
+			this.placeholder = "%s";
+			this.tableName = null;
+			this.filesName = null;
+			this.values = null;
+			this.where = null;
+			this.whereValues = null;
+			this.setValues = null;
+			return SQLStr;
 		}
-		sql = obj.getSQL(this.placeholder, this.tableName, this.filesName,
-				this.where);
-		this.placeholder = "?";
-		return sql;
+		SQLStr = obj.getSQL(this.placeholder, this.tableName, this.filesName,
+				this.where, this.whereValues, this.setValues, getFullSQL);
+		this.placeholder = "%s";
+		this.tableName = null;
+		this.filesName = null;
+		this.values = null;
+		this.where = null;
+		this.whereValues = null;
+		this.setValues = null;
+		return SQLStr;
 	}
 
 	/**
-	 * 设置SQL的占位符默认是?
+	 * 设置SQL的占位符默认是%s
 	 * 
 	 * @param placeholder
 	 * @return
@@ -93,6 +107,36 @@ public class SQLStringUtil {
 	}
 
 	/**
+	 * 设置where条件
+	 * 
+	 * @param whereValue
+	 * @return
+	 */
+	public SQLStringUtil setSQLWhereValues(String... whereValues) {
+		if (this.where.size() == whereValues.length) {
+			this.whereValues = Arrays.asList(whereValues);
+		} else {
+			throw new RuntimeException("where size NEQ whereValues length");
+		}
+		return this;
+	}
+
+	/**
+	 * 设置update set value
+	 * 
+	 * @param setValues
+	 * @return
+	 */
+	public SQLStringUtil setSQLSetValues(String... setValues) {
+		if (this.filesName.size() == setValues.length) {
+			this.setValues = Arrays.asList(setValues);
+		} else {
+			throw new RuntimeException("filesName size NEQ setValues length");
+		}
+		return this;
+	}
+
+	/**
 	 * 设置insert into语句的values
 	 * 
 	 * @param value
@@ -103,25 +147,4 @@ public class SQLStringUtil {
 		return this;
 	}
 
-	public static void main(String[] args) {
-		SQLStringUtil sql = new SQLStringUtil();
-		String sqlStr = null;
-
-		sqlStr = sql.setSQLTableName("user", "dept").setSQLFileName()
-				.setSQLWhere("ip", "id", "gg").getSQL(new SQLSelect());
-		System.out.println(sqlStr);
-
-		sqlStr = sql.setPlaceholder("%s").setSQLTableName("user")
-				.setSQLWhere("id", "ip").getSQL(new SQLDelete());
-		System.out.println(sqlStr);
-
-		sqlStr = sql.setSQLTableName("user").setSQLFileName("id", "ip")
-				.setSQLWhere("name", "address").getSQL(new SQLUpdate());
-		System.out.println(sqlStr);
-
-		sqlStr = sql.setPlaceholder("%s").setSQLTableName("user")
-				.setSQLFileName("name", "address")
-				.setSQLValue("jack", "kunming").getSQL(new SQLInsert());
-		System.out.println(sqlStr);
-	}
 }

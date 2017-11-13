@@ -38,14 +38,14 @@ public class serviceFactory extends abstractServiceFactory {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends abstractReflectService> T productionReflect(Class<?> clazz) {
-		T ref = null;
+		T obj = null;
 		try {
-			ref = (T) clazz.newInstance();
+			obj = (T) clazz.newInstance();
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		return (T) ref;
+		return (T) obj;
 	}
 }

@@ -10,23 +10,30 @@ public class SQLDelete extends abstractSQL {
 
 	@Override
 	public String getSQL(String placeholder, List<String> tableName,
-			List<String> filesName, List<String> wheres) {
-		setTableName(tableName.get(0));
-		where(placeholder, wheres);
+			List<String> filesName, List<String> wheres,
+			List<String> whereValues, List<String> setValues, Boolean getFullSQL) {
+		setTableName(placeholder, tableName, getFullSQL);
+		where(placeholder, wheres, whereValues, setValues, getFullSQL);
 		return this.TABLENAME + " " + this.WHERE;
 	}
 
 	/**
 	 * 设置表名
 	 * 
+	 * @param placeholder
 	 * @param tableName
+	 * @param getFullSQL
 	 */
-	private void setTableName(String tableName) {
-		if (tableName == null || tableName.trim().length() == 0) {
+	private void setTableName(String placeholder, List<String> tableName,
+			Boolean getFullSQL) {
+		if (tableName == null || tableName.size() == 0) {
 			throw new RuntimeException(
-					"delete tableName condition cannot be empty");
+					"SQL delete tableName condition cannot be empty");
 		}
-		this.TABLENAME = "delete from" + " " + tableName;
+		if (getFullSQL && placeholder.equals("%s")) {
+			this.TABLENAME = "delete from " + tableName.get(0);
+		} else {
+			this.TABLENAME = "delete from " + placeholder;
+		}
 	}
-
 }

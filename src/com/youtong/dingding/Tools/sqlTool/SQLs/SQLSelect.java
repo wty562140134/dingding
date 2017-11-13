@@ -14,33 +14,52 @@ public class SQLSelect extends abstractSQL {
 
 	@Override
 	public String getSQL(String placeholder, List<String> tableName,
-			List<String> filesName, List<String> wheres) {
-		setTableName(placeholder, tableName);
-		setFilesName(placeholder, filesName);
-		where(placeholder, wheres);
+			List<String> filesName, List<String> wheres,
+			List<String> whereValues, List<String> setValues, Boolean getFullSQL) {
+		setFilesName(placeholder, filesName, whereValues, setValues, getFullSQL);
+		setTableName(placeholder, tableName, whereValues, setValues, getFullSQL);
+		where(placeholder, wheres, whereValues, setValues, getFullSQL);
 		return this.TABLENAME + " " + this.FROM + " " + this.WHERE;
-	}
-
-	/**
-	 * 设置表名
-	 * 
-	 * @param tableName
-	 * @throws RuntimeException
-	 */
-	private void setTableName(String placeholder, List<String> tableName) {
-		String from = "from";
-		this.FROM = verdict(placeholder, from, tableName);
 	}
 
 	/**
 	 * 设置字段名
 	 * 
-	 * @param setFilesName
+	 * @param placeholder
+	 * @param filesName
+	 * @param getFullSQL
+	 * 
 	 * @throws RuntimeException
 	 */
-	private void setFilesName(String placeholder, List<String> filesName) {
+	private void setFilesName(String placeholder, List<String> filesName,
+			List<String> whereValues, List<String> setValues, Boolean getFullSQL) {
 		String select = "select";
-		this.TABLENAME = verdict(placeholder, select, filesName);
+		try {
+			this.TABLENAME = verdict(placeholder, select, filesName,
+					whereValues, setValues, getFullSQL);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 设置表名
+	 * 
+	 * @param placeholder
+	 * @param tableName
+	 * @param getFullSQL
+	 * 
+	 * @throws RuntimeException
+	 */
+	private void setTableName(String placeholder, List<String> tableName,
+			List<String> whereValues, List<String> setValues, Boolean getFullSQL) {
+		String from = "from";
+		try {
+			this.FROM = verdict(placeholder, from, tableName, whereValues,
+					setValues, getFullSQL);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

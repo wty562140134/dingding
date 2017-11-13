@@ -3,7 +3,6 @@ package com.youtong.dingding.Tools.loadConfig;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * 配置文件读取类
  * 
@@ -17,7 +16,7 @@ public class loadConfigFile extends baseLoadConfigFile {
 	private String AgentID = null;
 
 	/**
-	 * 构成器
+	 * 构造器
 	 * 
 	 * @param configFileName
 	 *            需要读取配置文件的名字

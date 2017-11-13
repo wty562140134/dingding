@@ -15,25 +15,37 @@ public class SQLInsert extends abstractSQL {
 
 	@Override
 	public String getSQL(String placeholder, List<String> tableName,
-			List<String> filesName, List<String> values)
+			List<String> filesName, List<String> values,
+			List<String> whereValues, List<String> setValues, Boolean getFullSQL)
 			throws RuntimeException {
-		setTableName(tableName.get(0));
-		setFilesName(placeholder, filesName);
-		setValues(placeholder, values);
+		if (filesName.size() != values.size()) {
+			throw new RuntimeException(
+					"SQL insert filesName size NEQ values size");
+		}
+		setTableName(placeholder, tableName, getFullSQL);
+		setFilesName(placeholder, filesName, whereValues, setValues, getFullSQL);
+		setValues(placeholder, values, whereValues, setValues, getFullSQL);
 		return this.TABLENAME + " " + this.FILENAME + " " + this.VALUES;
 	}
 
 	/**
 	 * 设置表名
 	 * 
+	 * @param placeholder
 	 * @param tableName
+	 * @param getFullSQL
 	 */
-	private void setTableName(String tableName) {
-		if (tableName == null || tableName.trim().length() == 0) {
+	private void setTableName(String placeholder, List<String> tableName,
+			Boolean getFullSQL) {
+		if (tableName == null || tableName.size() == 0) {
 			throw new RuntimeException(
-					"insert into table name condition cannot be empty");
+					"SQL insert into table name condition cannot be empty");
 		}
-		this.TABLENAME = "insert into" + " " + tableName;
+		if (getFullSQL && placeholder.equals("%s")) {
+			this.TABLENAME = "insert into " + tableName.get(0);
+		} else {
+			this.TABLENAME = "insert into " + placeholder;
+		}
 	}
 
 	/**
@@ -41,15 +53,26 @@ public class SQLInsert extends abstractSQL {
 	 * 
 	 * @param placeholder
 	 * @param filesName
+	 * @param getFullSQL
 	 */
-	private void setFilesName(String placeholder, List<String> filesName) {
+	private void setFilesName(String placeholder, List<String> filesName,
+			List<String> whereValues, List<String> setValues, Boolean getFullSQL) {
 		String sqlType = "insert";
-		this.FILENAME = verdict(placeholder, sqlType, filesName);
+		if (filesName == null || filesName.size() == 0) {
+			this.FILENAME = "";
+			return;
+		}
+		this.FILENAME = verdict(placeholder, sqlType, filesName, whereValues,
+				setValues, getFullSQL);
 	}
 
-	private void setValues(String placeholder, List<String> values) {
+	private void setValues(String placeholder, List<String> values,
+			List<String> whereValues, List<String> setValues, Boolean getFullSQL) {
 		String sqlType = "values";
-		this.VALUES = sqlType + " " + verdict(placeholder, sqlType, values);
+		this.VALUES = sqlType
+				+ " "
+				+ verdict(placeholder, sqlType, values, whereValues, setValues,
+						getFullSQL);
 	}
 
 }

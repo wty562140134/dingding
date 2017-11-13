@@ -24,9 +24,25 @@ public class testController extends baseController {
 		String clazzName = getPara("clazzName");
 		String callFunName = getPara("callFunName");
 		String params = getPara("params");
-		String s = initReflectService(reflectService.class).invokenFunction(
-				clazzName, callFunName, params);
+		String s = null;
+		if (params != null) {
+			s = initReflectService(reflectService.class).invokenFunction(
+					clazzName, callFunName, params);
+		} else {
+			s = initReflectService().invokenFunction(clazzName, callFunName);
+		}
+		initReflectService().getInstance(clazzName);
+		// String s1 = "world";
+		// String s2 = "jack";
+		// int s3 = 123;
+		// setAttribute("s", s, "s1", s1, "s2", s2, "s3", s3);
+		// setAttr("testStr", s);
 		renderText(s);
+	}
+
+	public static void main(String[] args) {
+		testController t = new testController();
+		t.index();
 	}
 
 }

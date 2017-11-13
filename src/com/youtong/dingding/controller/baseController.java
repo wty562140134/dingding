@@ -20,17 +20,12 @@ import com.youtong.dingding.controller.serviceFactory.abstractServiceFactory;
  */
 public class baseController extends Controller {
 
-	protected loadConfigFile load = null;
-	protected loadYaml yaml = null;
-	protected abstractServiceFactory createService = factoryUtile.getFactory();
-	protected Map<String, Object> attrs;
+	protected final loadConfigFile load = new loadConfigFile("accessToken.cfg");
+	protected final loadYaml yaml = new loadYaml("paramConfig.yaml");
+	protected final abstractServiceFactory createService = factoryUtile
+			.getFactory();
 
-	/**
-	 * 构造函数,加载cfg和yaml配置文件
-	 */
 	public baseController() {
-		this.load = new loadConfigFile("accessToken.cfg");
-		this.yaml = new loadYaml("paramConfig.yaml");
 	}
 
 	/**
@@ -57,6 +52,10 @@ public class baseController extends Controller {
 	 * 
 	 * @param clazz
 	 *            继承reflectService的反射类
+	 * 
+	 * @param useConstructor
+	 *            true:使用无参构造函数，false:使用有参构造函数
+	 * 
 	 * @return
 	 */
 	protected <T extends abstractReflectService> T initReflectService(
@@ -68,7 +67,11 @@ public class baseController extends Controller {
 		return createService.productionReflect(reflectService.class);
 	}
 
-	protected void setAttribute(Map<String, Object> attrs) {
-		this.attrs = attrs;
+	protected void setAttribute(Object... obj) {
+		for (int i = 0; i < obj.length; i++) {
+			setAttr(obj[i].toString(), obj[i + 1]);
+			i = i + 1;
+		}
 	}
+
 }

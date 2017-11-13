@@ -14,24 +14,32 @@ public class SQLUpdate extends abstractSQL {
 
 	@Override
 	public String getSQL(String placeholder, List<String> tableName,
-			List<String> filesName, List<String> wheres) {
-		setTableName(tableName.get(0));
-		setFilesName(placeholder, filesName);
-		where(placeholder, wheres);
+			List<String> filesName, List<String> wheres,
+			List<String> whereValues, List<String> setValues, Boolean getFullSQL) {
+		setTableName(placeholder, tableName, getFullSQL);
+		setFilesName(placeholder, filesName, whereValues, setValues, getFullSQL);
+		where(placeholder, wheres, whereValues, setValues, getFullSQL);
 		return this.TABLENAME + " " + this.SETNAME + " " + this.WHERE;
 	}
 
 	/**
 	 * 设置表名
 	 * 
+	 * @param placeholder
 	 * @param tableName
+	 * @param getFullSQL
 	 */
-	private void setTableName(String tableName) {
-		if (tableName == null || tableName.trim().length() == 0) {
+	private void setTableName(String placeholder, List<String> tableName,
+			Boolean getFullSQL) {
+		if (tableName == null || tableName.size() == 0) {
 			throw new RuntimeException(
-					"update table name condition cannot be empty");
+					"SQL update table name condition cannot be empty");
 		}
-		this.TABLENAME = "update " + tableName;
+		if (getFullSQL && placeholder.equals("%s")) {
+			this.TABLENAME = "update " + tableName.get(0);
+		} else {
+			this.TABLENAME = "update " + placeholder;
+		}
 	}
 
 	/**
@@ -39,10 +47,16 @@ public class SQLUpdate extends abstractSQL {
 	 * 
 	 * @param placeholder
 	 * @param filesName
+	 * @param getFullSQL
 	 */
-	private void setFilesName(String placeholder, List<String> filesName) {
+	private void setFilesName(String placeholder, List<String> filesName,
+			List<String> whereValues, List<String> setValues, Boolean getFullSQL) {
+		if (filesName == null || filesName.size() == 0) {
+			throw new RuntimeException(
+					"SQL update filesName condition cannot be empty");
+		}
 		String sqlType = "set";
-		this.SETNAME = verdict(placeholder, sqlType, filesName);
+		this.SETNAME = verdict(placeholder, sqlType, filesName, whereValues,
+				setValues, getFullSQL);
 	}
-
 }

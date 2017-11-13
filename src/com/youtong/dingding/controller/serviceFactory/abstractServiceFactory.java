@@ -31,10 +31,11 @@ public abstract class abstractServiceFactory {
 			Map<String, Map<String, List<String>>> paramMaps);
 
 	/**
-	 * 创建反射类的抽象方法
+	 * 创建反射类的封装函数
 	 * 
 	 * @param clazz
-	 *            需要创建反射类的class
+	 *            继承reflectService的反射类
+	 * 
 	 * @return
 	 */
 	public abstract <T extends abstractReflectService> T productionReflect(
